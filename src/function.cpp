@@ -4,7 +4,7 @@
 
 
 IScene* nowScene;
-bool lkey[256], rkey[256];
+
 
 int currentWidth;
 int currentHeight;
@@ -14,6 +14,7 @@ std::chrono::steady_clock::time_point startTime;
 void Init()
 {
 	startTime = std::chrono::steady_clock::now();
+
 	nowScene = new startscene();
 }
 
