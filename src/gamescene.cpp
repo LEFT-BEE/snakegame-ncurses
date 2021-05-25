@@ -2,24 +2,35 @@
 #include"function.h"
 #include "IObject.h"
 #include "stage.h"
+#include"item.h"
+#include<score.h>
 #include <ncurses.h>
 #include <unistd.h>
+#include<ctime>
 
 
 
 using namespace std;
 extern Stage* stage;
-
+player * me;
 MapManager* mapManager;
-
+itemManager* itemmanager;
+SnakeManager* Snake;
 
 GameScene::GameScene()
 {
     srand(time(NULL));
 
-    //mapManager�� ���� ��������������
     mapManager = new MapManager();
     mapManager->Load();
+    itemmanager = new itemManager();
+    itemmanager.setitem();
+    me = new player();
+    me.lengthScore++;
+
+    CharPosition start = new CharPosition(1,2);
+    cell startpoint2(start , '5');
+    snake = new SnakeManager(startpoint2);
 
     InitGameWindow();
     refresh();
@@ -81,10 +92,38 @@ void GameScene::Update(float eTime)
         ChangeScene(new GameScene());
     }
 
+    player->SetTotalScore(stage->nowStage);
+
+    //1. snake 이동값 받기
+    // 2. head의 상태에 따라 snake몸통 update
+    int now_status = Snake.now_status();
+    float itemmanager.end_time = clock();
+
+    if(itemmanager.end_time - itemmanager.start_time > 5){
+        itemmanager.setitem();
+    }
+
+    
+    if(now_status== 3){ // 0은 하나 줄어드는 경우임)
+        Snake.removetail();
+        itemmanager.setitem();
+        score.poisonScore++;
+    }
+
+    else if(now_status == 4){
+        Snake.addtail();
+        itemmanager.setitem();
+        score.growScore++;
+    }
+
+    //3. snake renderring하기
+    Snake.map_push_data();
+    score.lengthScore++;
+
+`
     usleep(150000);
 }
 
-WINDOW*create_newwin(int height , int width , int starty , int startx);
 void GameScene::Render()
 {
     start_color();

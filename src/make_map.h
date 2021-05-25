@@ -1,5 +1,4 @@
 #include<iostream>
-#include "IObject.h"
 #include<ncurses.h>
 #include <fstream>
 #include <vector>
@@ -16,6 +15,14 @@ struct CharPosition
 	CharPosition(int col, int row) : x(col), y(row) {}
 	CharPosition() : x(0), y(0) {}
 };
+
+class cell(){
+public:
+    CharPosition tmp;
+    char val;
+    cell(CharPosition newtmp , char value):tmp(newtmp) , val(value){}
+}
+
 
 class MapManager : public IObject
 {
