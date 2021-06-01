@@ -115,33 +115,33 @@ void snakeclass::movesnake(float eTime)
       fast = false;
     }
 // 게이트에 들어갔을 때 -gate1 진입시
-if (snake[0].y == Gate1.y && snake[0].x == Gate1.x){
+// if (snake[0].y == Gate1.y && snake[0].x == Gate1.x){
 
-    if (Gate2.x == 1){
-        direction = 'r';
-        snake[0].x = Gate2.x + 1;
-        snake[0].y = Gate2.y;
-    }
-    else{
-        direction = 'l';
-        snake[0].x = Gate2.x - 1;
-        snake[0].y = Gate2.y;
-      }
-  }
-//gate2 진입시
-    else if (snake[0].y == Gate2.y && snake[0].x == Gate2.x){
-      if (Gate1.y == 1){
-        direction = 'd';
-        snake[0].x = Gate1.x;
-        snake[0].y = Gate1.y + 1;
-    }
-    else{
-        direction = 'u';
-        snake[0].x = Gate1.x;
-        snake[0].y = Gate1.y - 1;
-        }
-    }
-}
+//     if (Gate2.x == 1){
+//         direction = 'r';
+//         snake[0].x = Gate2.x + 1;
+//         snake[0].y = Gate2.y;
+//     }
+//     else{
+//         direction = 'l';
+//         snake[0].x = Gate2.x - 1;
+//         snake[0].y = Gate2.y;
+//       }
+//   }
+// //gate2 진입시
+//     else if (snake[0].y == Gate2.y && snake[0].x == Gate2.x){
+//       if (Gate1.y == 1){
+//         direction = 'd';
+//         snake[0].x = Gate1.x;
+//         snake[0].y = Gate1.y + 1;
+//     }
+//     else{
+//         direction = 'u';
+//         snake[0].x = Gate1.x;
+//         snake[0].y = Gate1.y - 1;
+//         }
+//     }
+// }
 
 void snakeclass::PushData(){
   if(!grow)//add len
