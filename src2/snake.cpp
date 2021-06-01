@@ -141,7 +141,7 @@ void snakeclass::movesnake(float eTime)
 //         snake[0].y = Gate1.y - 1;
 //         }
 //     }
-// }
+ }
 
 void snakeclass::PushData(){
   if(!grow)//add len
