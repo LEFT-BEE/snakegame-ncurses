@@ -107,18 +107,19 @@ int Gatecnt=0;
 
 void itemManager::MakeGate()
 {
-  if(Gatecnt==0){
-  Gate1.y=rand()%HEIGHT;
-  if(Gate1.y>(HEIGHT/2)) Gate1.y=HEIGHT-2;
+  if(Gatecnt==0){ //gate를 2개 만들어야하니까 조건문 생성 0일때만 만듬
+    //gate를 세로방향,가로방향에서 하나씩 랜덤으로 생성
+  Gate1.y=rand()%HEIGHT; //gate 가로방향에서 생성
+  if(Gate1.y>(HEIGHT/2)) Gate1.y=HEIGHT-2; //gate가 가로벽에서 생성되야하니까 y는 1아니면 HEIGHT-2 값이 되어야함
   else Gate1.y=1;
-  Gate1.x=rand()%(WIDTH-3)+2; //가로 방향 게이트 랜덤 생성
+  Gate1.x=rand()%(WIDTH-3)+1; //y=1이거나 HEIGHT-2 인지점에서 x는 랜덤으로 아무곳 선정
 
-  Gate2.y=rand()%(HEIGHT-3)+2; //세로 방향 게이트 랜덤 생성
-  Gate2.x=rand()%WIDTH;
+  Gate2.y=rand()%(HEIGHT-3)+1; //세로 방향 게이트 랜덤 생성  //x=1이거나 WIDTH-2인 지점에서 y랜덤으로 선정
+  Gate2.x=rand()%WIDTH;  //gate가 세로벽에서 생성되야하니까 x는 1아니면 WIDTH-2 값이 되어야함
   if(Gate2.x>(WIDTH/2)) Gate2.x=WIDTH-2;
   else Gate2.x=1;
 
-  mapManager->data[Gate1.y][Gate1.x]='5';//게이트 케이스 5라고 줌
+  mapManager->data[Gate1.y][Gate1.x]='5';//게이트 케이스 5라고 줌 //위에서 생성한 좌표를 게이트라고 지정
   Gatecnt++;
   mapManager->data[Gate2.y][Gate2.x]='5';
   Gatecnt++;
@@ -127,7 +128,7 @@ void itemManager::MakeGate()
 
 void itemManager::DeleteGate(){
   if(Gatecnt==2){
-  mapManager->data[Gate1.y][Gate1.x]='1';
+  mapManager->data[Gate1.y][Gate1.x]='1'; //위에서 만든 게이트를 다시 벽으로 바꿈
   Gatecnt--;
   mapManager->data[Gate2.y][Gate2.x]='1';
   Gatecnt--;
