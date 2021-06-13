@@ -74,7 +74,7 @@ void itemManager::Update(float eTime){
     // DeleteGate();
     // MakeGate();
     if(istimeover(eTime)){
-      DeleteGate();
+      // DeleteGate();
       for(int i=0 ; i < data.size(); i++ ){
         mapManager-> PatchData(data[i].position.y , data[i].position.x , '0');
       }
@@ -119,9 +119,11 @@ void itemManager::MakeGate()
   if(Gate2.x>(WIDTH/2)) Gate2.x=WIDTH-2;
   else Gate2.x=1;
 
-  mapManager->data[Gate1.y][Gate1.x]='5';//게이트 케이스 5라고 줌 //위에서 생성한 좌표를 게이트라고 지정
+  mapManager->data[Gate1.y][Gate1.x]='8';//게이트 케이스 5라고 줌 //위에서 생성한 좌표를 게이트라고 지정
+  mapManager->PatchData(Gate1.y ,Gate1.x , '8');
   Gatecnt++;
-  mapManager->data[Gate2.y][Gate2.x]='5';
+  mapManager->data[Gate2.y][Gate2.x]='8';
+  mapManager->PatchData(Gate2.y ,Gate2.x , '8');
   Gatecnt++;
   }
 }
@@ -129,6 +131,7 @@ void itemManager::MakeGate()
 void itemManager::DeleteGate(){
   if(Gatecnt==2){
   mapManager->data[Gate1.y][Gate1.x]='1'; //위에서 만든 게이트를 다시 벽으로 바꿈
+
   Gatecnt--;
   mapManager->data[Gate2.y][Gate2.x]='1';
   Gatecnt--;
