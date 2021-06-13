@@ -2,8 +2,8 @@
 #include"item.h"
 extern itemManager *itemmanager;
 extern MapManager * mapManager;
-// extern Position Gate1;
-// extern Position Gate2;
+extern Position Gate1;
+extern Position Gate2;
 
 
 snakepart::snakepart(int col, int row)
@@ -44,6 +44,8 @@ bool snakeclass::collision() // get item? or get die?
     if(snake[0].x == 0 || snake[0].x == maxwidth-1 || snake[0].y ==0 || snake[0].y == maxheight-2) return true;
     if(mapManager->data[snake[0].y][snake[0].x] == '1'){ return true;}
     if(mapManager->data[snake[0].y][snake[0].x] == '2'){ return true;}
+    //gate에 충돌시
+    if(mapManager->data[snake[0].y][snake[0].x] == '8'){ return false;}
     //snakebody에 snakehead 닿을 시 충돌
     for(int i =2; i<snake.size(); i++){
         if(snake[0].x == snake[i].x && snake[0].y == snake[i].y) return true;
@@ -114,34 +116,41 @@ void snakeclass::movesnake(float eTime)
     else{
       fast = false;
     }
-// 게이트에 들어갔을 때 -gate1 진입시
-// if (snake[0].y == Gate1.y && snake[0].x == Gate1.x){
+// // 게이트에 들어갔을 때 -gate1 진입시
+if(mapManager->data[snake[0].y][snake[0].x] == '8'){
+    mapManager->data[Gate2.y][Gate2.x]='3';
+    if (snake[0].y == Gate1.y && snake[0].x == Gate1.x){
 
-//     if (Gate2.x == 1){
-//         direction = 'r';
-//         snake[0].x = Gate2.x + 1;
-//         snake[0].y = Gate2.y;
-//     }
-//     else{
-//         direction = 'l';
-//         snake[0].x = Gate2.x - 1;
-//         snake[0].y = Gate2.y;
-//       }
-//   }
-// //gate2 진입시
-//     else if (snake[0].y == Gate2.y && snake[0].x == Gate2.x){
-//       if (Gate1.y == 1){
-//         direction = 'd';
-//         snake[0].x = Gate1.x;
-//         snake[0].y = Gate1.y + 1;
-//     }
-//     else{
-//         direction = 'u';
-//         snake[0].x = Gate1.x;
-//         snake[0].y = Gate1.y - 1;
-//         }
-//     }
- }
+      if (Gate2.x == 1){
+        direction = 'r';
+        mapManager->PatchData(Gate2.y, Gate2.x + 1, 'x');
+        // snake[0].x = Gate2.x + 1;
+        // snake[0].y = Gate2.y;
+      }
+      else{
+        direction = 'l';
+        mapManager->PatchData(Gate2.y, Gate2.x - 1, 'x');
+        // snake[0].x = Gate2.x - 1;
+        // snake[0].y = Gate2.y;
+          }
+      }
+//gate2 진입시
+    else if (snake[0].y == Gate2.y && snake[0].x == Gate2.x){
+      if (Gate1.y == 1){
+        direction = 'd';
+        mapManager->PatchData(Gate1.y + 1, Gate1.x, 'x');
+        // snake[0].x = Gate1.x;
+        // snake[0].y = Gate1.y + 1;
+      }
+      else{
+        direction = 'u';
+        mapManager->PatchData(Gate1.y - 1, Gate1.x, 'x');
+        // snake[0].x = Gate1.x;
+        // snake[0].y = Gate1.y - 1;
+        }
+    }
+}
+}
 
 void snakeclass::PushData(){
   if(!grow)//add len
