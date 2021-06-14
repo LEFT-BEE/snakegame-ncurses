@@ -15,7 +15,7 @@ void Init()
 {
 	startTime = std::chrono::steady_clock::now();
 
-	nowScene = new GameScene();
+	nowScene = new startscene();
 }
 
 void Update(float eTime)
