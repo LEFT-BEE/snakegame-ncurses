@@ -1,21 +1,16 @@
 #include<iostream>
-#include "IObject.h"
 #include<ncurses.h>
 #include <fstream>
 #include <vector>
 #include <cstdlib>
 #include <string>
 #include <ctime>
+#include "function.h"
+#include "IScene.h"
+#include "IObject.h"
 
 #define WIDTH 62
 #define HEIGHT 32
-
-struct CharPosition
-{
-	int x, y;
-	CharPosition(int col, int row) : x(col), y(row) {}
-	CharPosition() : x(0), y(0) {}
-};
 
 class MapManager : public IObject
 {

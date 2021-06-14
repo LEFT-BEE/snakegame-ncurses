@@ -2,24 +2,34 @@
 #include"function.h"
 #include "IObject.h"
 #include "stage.h"
+#include"snake.h"
 #include <ncurses.h>
 #include <unistd.h>
+#include<ctime>
+#include<cstdlib>
+#include"gameoverscene.h"
 
 
 
 using namespace std;
 extern Stage* stage;
-
 MapManager* mapManager;
-
+itemManager *itemmanager;
+Player * me;
+MENU *menu;
+snakeclass * mysnake;
 
 GameScene::GameScene()
 {
-    srand(time(NULL));
 
-    //mapManager�� ���� ��������������
+    srand(time(NULL));
+    me = new Player();
     mapManager = new MapManager();
     mapManager->Load();
+
+    mysnake = new snakeclass();
+    itemmanager = new itemManager();
+    menu  = new MENU();
 
     InitGameWindow();
     refresh();
@@ -58,14 +68,7 @@ void GameScene::EndGameWinow()
 bool isclear() {
     int y ,x;
     printw("\n");
-    getyx(stdscr , y ,x);
-
     mvprintw(y+1 , 20, "nextmap key is f1  ");
-    int ch;
-    ch = getch();
-    if (ch == KEY_F(1))
-        return true;
-
     return false;
 }
 
@@ -74,6 +77,7 @@ void GameScene::Update(float eTime)
 
     if (isclear())
     {
+        stage->delaytime -= 25000;
         stage->nowStage++;
         if(stage->nowStage == 3){
           EndGameWinow();
@@ -81,16 +85,31 @@ void GameScene::Update(float eTime)
         ChangeScene(new GameScene());
     }
 
-    usleep(150000);
+    mysnake->movesnake(eTime);
+
+    if(mysnake->isDied == true){
+      ChangeScene(new GameOver());
+    }
+    mysnake->PushData();
+
+    me->SetTotalScore(stage->nowStage);
+    menu->Update(eTime);
+    itemmanager->Update(eTime);
+    usleep(stage->delaytime);
 }
 
-WINDOW*create_newwin(int height , int width , int starty , int startx);
 void GameScene::Render()
-{
+
+{   menu->Render();
     start_color();
     WINDOW*wall;
     init_pair(2 , COLOR_BLACK , COLOR_BLACK);
     init_pair(3 , COLOR_RED , COLOR_RED);
+    init_pair(4 , COLOR_BLUE , COLOR_BLUE);
+    init_pair(5 , COLOR_GREEN , COLOR_GREEN);
+    init_pair(6,COLOR_YELLOW , COLOR_YELLOW);
+    init_pair(7 , COLOR_MAGENTA , COLOR_MAGENTA);
+
 
     for (int i = 0; i < HEIGHT; i++)
     {
@@ -111,20 +130,28 @@ void GameScene::Render()
                   mvprintw(i, j," ");
                   attroff(COLOR_PAIR(3));
                 break;
-            case '3':
-                mvaddch(i, j, 'A');
+            case 'x':
+                  attron(COLOR_PAIR(4));
+                  mvprintw(i, j," ");
+                  attroff(COLOR_PAIR(4));
                 break;
             case '4':
-                mvaddch(i, j, 'B');
+                mvaddch(i, j, 'x');
                 break;
             case '5':
-                mvaddch(i, j, 'C');
+                  attron(COLOR_PAIR(5));
+                  mvprintw(i, j," ");
+                  attroff(COLOR_PAIR(5));
                 break;
             case '6':
-                mvaddch(i, j, 'D');
+                  attron(COLOR_PAIR(6));
+                  mvprintw(i, j," ");
+                  attroff(COLOR_PAIR(6));
                 break;
             case '7':
-                mvaddch(i, j, 'E');
+                  attron(COLOR_PAIR(7));
+                  mvprintw(i, j," ");
+                  attroff(COLOR_PAIR(7));
                 break;
             case '8':
                 mvaddch(i, j, ' ');
@@ -134,38 +161,3 @@ void GameScene::Render()
 
     refresh();
 }
-
-
-
-// draw the game window
-
-// // print score at bottom of window
-// void GameScene::PrintScore()
-// {
-// 	move(maxheight-1, 0);
-// 	printw("Score: %d", score);
-// 	return;
-// }
-
-// void GameScene::PlayGame()
-// {
-//     while(1)
-//     {
-//         if (FatalCollision())
-//         {
-//             move((maxheight-2)/2,(maxwidth-5)/2);
-//             printw("GAME OVER");
-//             break;
-//         }
-
-//         Update();
-//         Render();
-
-//         if (direction=='q') //exit
-//         {
-//         	break;
-//         }
-
-//         usleep(500); // delay
-//     }
-// }
