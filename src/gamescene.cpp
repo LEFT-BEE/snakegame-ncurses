@@ -66,9 +66,10 @@ void GameScene::EndGameWinow()
 }
 
 bool isclear() {
-    int y ,x;
-    printw("\n");
-    mvprintw(y+1 , 20, "nextmap key is f1  ");
+    if(menu->isclear == true)
+        menu0->isclear == false;
+        return true;
+    
     return false;
 }
 
