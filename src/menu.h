@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include "IObject.h"
 
+
 class MENU: public IObject
 {
 public:

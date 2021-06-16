@@ -36,6 +36,6 @@ public:
     }
     void SetTotalScore(int value)
     {
-        totalScore = growScore * 7 - poisonScore * 3 + gateScore * 1 + value * 10 + 100;
+        totalScore = growScore * 10 - poisonScore * 10 + gateScore * 1 + value * 10;
     }
 };

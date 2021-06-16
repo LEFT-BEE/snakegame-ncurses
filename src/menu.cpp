@@ -13,6 +13,7 @@ extern Stage *stage;
 MENU::MENU()
 {
     getmaxyx(stdscr, maxheight, maxwidth);
+    // succeed = false;
 }
 MENU::~MENU()
 {
@@ -26,7 +27,7 @@ void MENU::Render()
 {
     //[TO-DO] 여기에서 mvaddch를 이용해서 출력해주기
     DrawScore();
-    //DrawMission();
+    DrawMission();
 }
 
 void MENU::DrawScore()
@@ -37,46 +38,51 @@ void MENU::DrawScore()
 
     for (int i = 0; i < 26; i++)
     {
-        move(8, maxwidth / 5 * 4 -8 + i);
+        move(8, maxwidth / 5 * 4 -9 + i);
         addch('-');
     }
 
     int totalScore = me->totalScore;
     string totalScore_str =  to_string(totalScore);
-    move(10, maxwidth / 5 * 4 +1);
-    printw("B : ");
+    move(10, maxwidth / 5 * 4 -3);
+    printw("Score : ");
     move(10 , maxwidth / 5 * 4 +6);
-    //printw("%s" , totalScore_str);
+    printw(totalScore_str.c_str());
 
-    // move(12 , 5*4+2);
-    // printw("+ : ");
-    // move(12 , 5*4+7);
-    // printw("%s" , score[me->growScore][0]);
-    //
-    // move(14 , 5*4+2);
-    // printw("- : ");
-    // move(14 , 5*4+7);
-    // printw("%s" , score[me->poisonScore][0]);
-    //
-    // move(16 , 5*4+2);
-    // printw("G : ");
-    // move(16 , 5*4+7);
-    // printw("%s" ,score[me->gateScore][0]);
+    
+    int growScore = me->growScore;
+    string growScore_str =  to_string(growScore);
+    move(12, maxwidth / 5 * 4 +1);
+    printw("+ : ");
+    move(12 , maxwidth / 5 * 4 +6);
+    printw(growScore_str.c_str());
 
-    for (int i = 0; i < 26; i++)
-    {
-        move(18, maxwidth / 5 * 4 -8 + i);
-        addch('-');
-    }
+    
+    int poisonScore = me->poisonScore;
+    string poisonScore_str =  to_string(poisonScore);
+    move(14, maxwidth / 5 * 4 +1);
+    printw("- : ");
+    move(14 , maxwidth / 5 * 4 +6);
+    printw(poisonScore_str.c_str());
+
+    
+    int gateScore = me->gateScore;
+    string gateScore_str =  to_string(gateScore);
+    move(16, maxwidth / 5 * 4 +1);
+    printw("G : ");
+    move(16 , maxwidth / 5 * 4 +6);
+    printw(gateScore_str.c_str());
+    
 }
-
 
 
 char MENU::Complete(int present, int goal)
 {
     if (present >= goal)
+        // bool succeed = true;
         return 'V';
     else
+        // bool succeed = false;
         return ' ';
 }
 
@@ -84,30 +90,28 @@ void MENU::DrawMission()
 {
     int *nowMission = stage->getNowMission();
 
-    move(maxheight / 2, maxwidth / 5 * 4 + 1);
+    move(19, maxwidth / 5 * 4 -5);
     printw("| M I S S I O N |");
 
     for (int i = 0; i < 26; i++)
     {
-        move(maxheight / 2 + 1, maxwidth / 5 * 4 - 3 + i);
+        move(20, maxwidth / 5 * 4 - 9 + i);
         addch('-');
     }
 
-    move(22, maxwidth / 5 * 4 + 4);
+    move(22, maxwidth / 5 * 4 -4);
     printw("Length : %d/%d (%c)", me->lengthScore, nowMission[0], Complete(me->lengthScore, nowMission[0]));
 
-    move(24, maxwidth / 5 * 4 + 4);
+    move(24, maxwidth / 5 * 4 -2);
     printw("Gift : %d/%d (%c)", me->growScore, nowMission[1], Complete(me->growScore, nowMission[1]));
 
-    move(26, maxwidth / 5 * 4 + 4);
+    move(26, maxwidth / 5 * 4 -4);
     printw("Poison : %d/%d (%c)", me->poisonScore, nowMission[2], Complete(me->poisonScore, nowMission[2]));
 
-    move(28, maxwidth / 5 * 4 + 4);
+    move(28, maxwidth / 5 * 4 -2);
     printw("Gate : %d/%d (%c)", me->gateScore, nowMission[3], Complete(me->gateScore, nowMission[3]));
 
-    for (int i = 0; i < 26; i++)
-    {
-        move(30, maxwidth / 5 * 4 - 3 + i);
-        addch('-');
-    }
+    // if (Complete(me->lengthScore, nowMission[0]).succeed = true && Complete(me->lengthScore, nowMission[1]).succeed = true &&
+    //     Complete(me->lengthScore, nowMission[2]).succeed = true && Complete(me->lengthScore, nowMission[3]).succeed = true)
+    //     isclear = true;
 }

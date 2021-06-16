@@ -1,7 +1,9 @@
 #include"snake.h"
 #include"item.h"
+#include"score.h"
 extern itemManager *itemmanager;
 extern MapManager * mapManager;
+extern Player *me;
 
 extern Position Gate1;
 extern Position Gate2;
@@ -27,8 +29,8 @@ snakeclass::snakeclass()
      snake.push_back(snakepart((maxwidth/2)+i, (maxheight/2)));
    }
    grow = false;
-   dok = false;
-   fast = false;
+   poison = false;
+   biggift = false;
 
    //초기방향 : left
    direction = 'l';
@@ -97,13 +99,17 @@ void snakeclass::movesnake(float eTime)
 
     if(mapManager->data[snake[0].y][snake[0].x] == '5'){
       itemmanager->deleteitem(snake[0].y , snake[0].x);
-      dok = true;
+      me->SetPoisonScore(me->poisonScore + 1);
+      me->SetLengthScore(me->lengthScore - 1);
+      poison = true;
     }
     else{
-      dok = false;
+      poison = false;
     }
     if(mapManager->data[snake[0].y][snake[0].x] == '6'){
       itemmanager->deleteitem(snake[0].y , snake[0].x);
+      me->SetGrowScore(me->growScore + 1);
+      me->SetLengthScore(me->lengthScore + 1);
       grow = true;
     }
     else{
@@ -111,15 +117,19 @@ void snakeclass::movesnake(float eTime)
     }
     if(mapManager->data[snake[0].y][snake[0].x] == '7'){
       itemmanager->deleteitem(snake[0].y , snake[0].x);
-      fast = true;
+      me->SetGrowScore(me->growScore + 2);
+      me->SetLengthScore(me->lengthScore + 1);
+      biggift = true;
+      grow = true;
     }
     else{
-      fast = false;
+      biggift = false;
     }
 
     //gate
     if(mapManager->data[snake[0].y][snake[0].x] == '8'){
         gateflag=true; //gate통과중 표시 ->게이트 생성 정지
+        me->SetGateScore(me->gateScore + 1);
         if (snake[0].y == Gate1.y && snake[0].x == Gate1.x){
 
           if (Gate2.x == 1){
@@ -161,12 +171,12 @@ void snakeclass::PushData(){
       snake.pop_back();
   }
 
-  if(dok)
+  if(poison)
   {
     mapManager->PatchData(snake[snake.size()-1].y , snake[snake.size()-1].x , '0');
     snake.pop_back();
   }
-  if(fast)
+  if(biggift)
   {
     while(1){
         int x = rand() % WIDTH;

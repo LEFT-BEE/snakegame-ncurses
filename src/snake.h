@@ -15,15 +15,14 @@ class snakeclass{
     //점수 : points, 시간 : del
     int maxheight;
     int maxwidth;
-    int points;
     char direction;
     std::vector<snakepart> snake;
 
 
 public:
     bool grow;
-    bool dok;
-    bool fast;
+    bool poison;
+    bool biggift;
 
     bool isDied;
     snakeclass();
