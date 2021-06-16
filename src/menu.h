@@ -5,6 +5,8 @@
 #include <cstdlib>
 #include "IObject.h"
 
+bool isclear;
+
 
 class MENU: public IObject
 {
