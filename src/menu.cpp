@@ -6,6 +6,8 @@
 #include "score.h"
 #include "stage.h"
 #include "menu.h"
+#include "gamescene.h"
+
 using namespace std;
 extern Player *me;
 extern Stage *stage;
@@ -79,10 +81,8 @@ void MENU::DrawScore()
 char MENU::Complete(int present, int goal)
 {
     if (present >= goal)
-        // bool succeed = true;
         return 'V';
     else
-        // bool succeed = false;
         return ' ';
 }
 
@@ -111,7 +111,7 @@ void MENU::DrawMission()
     move(28, maxwidth / 5 * 4 -2);
     printw("Gate : %d/%d (%c)", me->gateScore, nowMission[3], Complete(me->gateScore, nowMission[3]));
 
-    // if (Complete(me->lengthScore, nowMission[0]).succeed = true && Complete(me->lengthScore, nowMission[1]).succeed = true &&
-    //     Complete(me->lengthScore, nowMission[2]).succeed = true && Complete(me->lengthScore, nowMission[3]).succeed = true)
-    //     isclear = true;
+    if (Complete(me->lengthScore, nowMission[0]) == 'V' && Complete(me->lengthScore, nowMission[1]) == 'V' &&
+        Complete(me->lengthScore, nowMission[2]) == 'V' && Complete(me->lengthScore, nowMission[3]) == 'V')
+        isclear = true;
 }
