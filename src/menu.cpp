@@ -15,7 +15,7 @@ extern Stage *stage;
 MENU::MENU()
 {
     getmaxyx(stdscr, maxheight, maxwidth);
-    // succeed = false;
+    isclear = false;
 }
 MENU::~MENU()
 {
