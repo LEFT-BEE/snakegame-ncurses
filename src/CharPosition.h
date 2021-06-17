@@ -1,4 +1,4 @@
-@author Hanseungjin
+//@author Hanseungjin
 
 struct CharPosition
 {
