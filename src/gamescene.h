@@ -1,3 +1,8 @@
+/*
+@author Hanseungjin(20181512)
+@author Leeminji(20173416)
+@author Chaejiyun(20191313)
+*/
 #pragma once
 #include <cstdlib>
 #include <ctime>
