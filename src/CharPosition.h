@@ -1,3 +1,5 @@
+@author Hanseungjin
+
 struct CharPosition
 {
 	int x, y;
