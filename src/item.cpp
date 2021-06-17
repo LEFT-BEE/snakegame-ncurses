@@ -1,3 +1,8 @@
+/*
+@author Hanseungjin(20181512)
+@author Chaejiyun(20191313)
+*/
+
 #include"item.h"
 #include <cstdlib>
 #include <ctime>
