@@ -1,7 +1,6 @@
-/*
-@brief GameOver Scene file
-@author  hanseunghin
-*/
+//@author Hanseungjin
+
+
 #pragma once
 #include"IScene.h"
 #include <ncurses.h>
