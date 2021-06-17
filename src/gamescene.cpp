@@ -1,6 +1,7 @@
 /*
 @author Hanseungjin(20181512)
-@author 
+@author Leeminji(20173416)
+@author Chaejiyun(20191313)
 
 */
 
