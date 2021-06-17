@@ -1,3 +1,4 @@
+//@author Hanseungjin
 #pragma once
 class IObject
 {
