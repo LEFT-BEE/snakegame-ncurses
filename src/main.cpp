@@ -1,3 +1,6 @@
+/*
+@author Hanseungjin(20181512)
+*/
 #include <iostream>
 #include <vector>
 #include <ncurses.h>
