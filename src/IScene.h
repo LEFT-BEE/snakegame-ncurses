@@ -1,3 +1,5 @@
+//@author Hanseungjin
+
 #pragma once
 class IScene
 {
