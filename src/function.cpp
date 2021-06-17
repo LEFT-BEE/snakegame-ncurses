@@ -1,3 +1,5 @@
+//@author Hanseungjin
+
 #include"function.h"
 #include"gamescene.h"
 #include"startscene.h"
