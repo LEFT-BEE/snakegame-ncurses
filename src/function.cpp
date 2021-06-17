@@ -1,4 +1,4 @@
-//@author Hanseungjin
+//@author Hanseungjin(20181512)
 
 #include"function.h"
 #include"gamescene.h"
