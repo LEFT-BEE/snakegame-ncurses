@@ -1,3 +1,9 @@
+/*
+@author Hanseungjin(20181512)
+@ah
+
+*/
+
 #include"gamescene.h"
 #include"function.h"
 #include "IObject.h"
