@@ -1,3 +1,5 @@
+//@author Hanseungjin
+
 #pragma once
 #include "IScene.h"
 #include<ncurses.h>
