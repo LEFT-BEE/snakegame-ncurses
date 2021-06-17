@@ -67,7 +67,7 @@ void GameScene::EndGameWinow()
 
 bool isclear() {
     if(menu->isclear == true)
-        menu0->isclear == false;
+        menu->isclear = false;
         return true;
     
     return false;
