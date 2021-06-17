@@ -1,10 +1,5 @@
-/*
-  @file GameOverScene.cpp
+//@author Hanseungjin
 
-  @brief GameOverScene file
-
-  @author hanseungjin
-*/
 
 #include "IScene.h"
 #include "gamescene.h"
