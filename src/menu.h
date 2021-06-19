@@ -5,12 +5,12 @@
 #include <vector>
 #include <string.h>
 #include <cstdlib>
-#include "IObject.h"
 
 
 
 
-class MENU: public IObject
+
+class MENU
 {
 
 public:

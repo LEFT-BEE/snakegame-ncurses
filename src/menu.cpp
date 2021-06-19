@@ -119,11 +119,4 @@ void MENU::DrawMission()
     move(28, maxwidth / 5 * 4 -2);
     printw("Gate : %d/%d (%c)", me->gateScore, nowMission[3], Complete(me->gateScore, nowMission[3]));
 
-    // if (Complete(me->lengthScore, nowMission[0]) == 'V' && Complete(me->growScore, nowMission[1]) == 'V'){
-    //     if(Complete(me->poisonScore, nowMission[2]) == 'V' && Complete(me->gateScore, nowMission[3]) == 'V')
-    //       {
-    //         clear = true;
-    //       }
-    //   }
-
 }
