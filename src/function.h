@@ -15,7 +15,7 @@
 using namespace std;
 
 void Init();
-void Update(float eTime); //Elapsed Time
+void Update(float eTime); 
 void Render();
 void Destroy();
 float GetElapsedTime();

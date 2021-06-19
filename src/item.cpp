@@ -1,6 +1,7 @@
 /*
 @author Hanseungjin(20181512)
 @author Chaejiyun(20191313)
+@author Leeminji(20173416)
 */
 
 #include"item.h"
@@ -11,9 +12,9 @@
 extern MapManager *mapManager;
 bool gateflag=false;
 
-CharPosition item::getrnadpos(){
+myposition item::getrnadpos(){
 
-        CharPosition *pos = new CharPosition();
+        myposition *pos = new myposition();
 
         while(1){
             int x = rand() % WIDTH;

@@ -34,7 +34,7 @@ void Destroy()
 {
 	delete nowScene;
 }
-// �����ð� �ޱ�
+
 float GetElapsedTime()
 {
 	auto endTime = std::chrono::steady_clock::now();

@@ -1,3 +1,9 @@
+/*
+@author Hanseungjin(20181512)
+@author Chaejiyun(20191313)
+@author Leeminji(2017)
+*/
+
 #include"snake.h"
 #include"item.h"
 #include"score.h"
@@ -26,7 +32,7 @@ snakeclass::snakeclass()
 
    getmaxyx(stdscr, maxheight, maxwidth);
    for(int i=0; i<3; i++){
-     snake.push_back(snakepart((maxwidth/2)+i, (maxheight/2)));
+     snake.push_back(snakepart(20+i, 20));
    }
    grow = false;
    poison = false;
@@ -35,8 +41,6 @@ snakeclass::snakeclass()
    //초기방향 : left
    direction = 'l';
    srand(time(0));
-   //makeitem();
-   //snake data clear
    for(int i = 0; i<snake.size(); i++){
     mapManager->PatchData(snake[i].y , snake[i].x , 'x');
   }
@@ -58,8 +62,6 @@ bool snakeclass::collision() // get item? or get die?
 void snakeclass::movesnake(float eTime)
 {   int tmp;
     tmp = getch();
-
-
     switch(tmp)
     {
         case KEY_LEFT:
@@ -117,7 +119,7 @@ void snakeclass::movesnake(float eTime)
     }
     if(mapManager->data[snake[0].y][snake[0].x] == '7'){
       itemmanager->deleteitem(snake[0].y , snake[0].x);
-      me->SetGrowScore(me->growScore + 2);
+      me->SetGrowScore(me->growScore + 1);
       me->SetLengthScore(me->lengthScore + 1);
       biggift = true;
       grow = true;
@@ -182,10 +184,10 @@ void snakeclass::PushData(){
         int x = rand() % WIDTH;
         int y = rand() % HEIGHT;
         if(mapManager->data[y][x] == '0'){
-            mapManager->PatchData(y ,x , '2');
-            mapManager->PatchData(y-1 ,x , '2');
-            mapManager->PatchData(y ,x+1 , '2');
-            mapManager->PatchData(y-1 ,x+1 , '2');
+            mapManager->PatchData(y ,x , '1');
+            mapManager->PatchData(y-1 ,x , '1');
+            mapManager->PatchData(y ,x+1 , '1');
+            mapManager->PatchData(y-1 ,x+1 , '1');
             break;
         }
     }

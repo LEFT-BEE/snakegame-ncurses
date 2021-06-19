@@ -44,24 +44,23 @@ GameScene::GameScene()
 
 GameScene::~GameScene()
 {
-    //delete mapManager;
     nodelay(stdscr, false);
     endwin();
 }
 
-// initialise the game window
+
 void GameScene::InitGameWindow()
 {
-    initscr(); // initialise the screen
+    initscr(); 
     start_color();
     init_pair(1,COLOR_BLACK , COLOR_WHITE);
     attron(COLOR_PAIR(1));
     wbkgd(stdscr , COLOR_PAIR(1));
     nodelay(stdscr, TRUE);
-    keypad(stdscr, true);                  // initialise the keyboard: we can use arrows for directions
-    noecho();                              // user input is not displayed on the screen
-    curs_set(0);                           // cursor symbol is not not displayed on the screen (Linux)
-    getmaxyx(stdscr, maxheight, maxwidth); // define dimensions of game window
+    keypad(stdscr, true);
+    noecho();
+    curs_set(0);
+    getmaxyx(stdscr, maxheight, maxwidth);
     return;
 }
 
@@ -72,27 +71,9 @@ void GameScene::EndGameWinow()
     endwin();
 }
 
-bool isclear() {
-    if(menu->isclear == true)
-        menu->isclear = false;
-        return true;
-    
-    return false;
-}
 
 void GameScene::Update(float eTime)
 {
-
-    if (isclear())
-    {
-        stage->delaytime -= 25000;
-        stage->nowStage++;
-        if(stage->nowStage == 3){
-          EndGameWinow();
-        }
-        ChangeScene(new GameScene());
-    }
-
     mysnake->movesnake(eTime);
 
     if(mysnake->isDied == true){
@@ -103,12 +84,33 @@ void GameScene::Update(float eTime)
     me->SetTotalScore(stage->nowStage);
     menu->Update(eTime);
     itemmanager->Update(eTime);
+
+
+    if (menu->clear)
+    {
+        stage->nowStage++;
+        if(stage->nowStage == 4){
+          EndGameWinow();
+        }
+        stage->delaytime -= 20000;
+        mapManager = new MapManager();
+        mapManager->Load();
+        mysnake = new snakeclass();
+        me = new Player();
+        menu  = new MENU();
+
+        InitGameWindow();
+        refresh();
+    }
+
     usleep(stage->delaytime);
 }
 
 void GameScene::Render()
 
-{   menu->Render();
+{
+
+    menu->Render();
     start_color();
     WINDOW*wall;
     init_pair(2 , COLOR_BLACK , COLOR_BLACK);

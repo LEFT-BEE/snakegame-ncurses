@@ -1,4 +1,4 @@
-
+//@author Hanseungjin(20181512)
 #include "stage.h"
 
 
@@ -9,13 +9,5 @@ Stage::Stage()
 }
 
 Stage::~Stage()
-{
-}
-
-void Stage::Update(float eTime)
-{
-}
-
-void Stage::Render()
 {
 }

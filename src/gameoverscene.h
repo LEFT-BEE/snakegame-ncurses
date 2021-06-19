@@ -16,7 +16,6 @@ public:
 
   GameOver();
   ~GameOver();
-
   void ClearScreen(float x , float y);
   int UserInput();
   int is_restart();

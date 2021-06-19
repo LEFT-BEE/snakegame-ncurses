@@ -1,3 +1,10 @@
+/*
+@author Hanseungjin(20181512)
+@author Chaejiyun(20191313)
+@author Leeminji(20173416)
+*/
+
+
 #include <vector>
 #include <ncurses.h>
 #include <cstdlib>

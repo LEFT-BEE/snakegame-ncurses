@@ -53,8 +53,10 @@ void GameOver::load(){
       }
       height++;
     }
-
 }
+
+
+
 int GameOver::UserInput(){
   int userinput;
   userinput = getch();
@@ -74,14 +76,8 @@ void GameOver::ClearScreen(float x, float y)
 
 int GameOver::is_restart(){
   ClearScreen(3.5 ,2);
-  move(25 ,65);
-  printw("if (YOU WANT TO TRY AGAIN){");
-  move(26 , 66);
-  printw("PRESS 'y'}");
-  move(28,65);
-  printw("else{");
-  move(29,66);
-  printw("PRESS 'n'}");
+  move(32 ,10);
+  printw("YOU WANT TO TRY AGAIN PRESS 'y' or 'n'");
   return UserInput();
 
 }

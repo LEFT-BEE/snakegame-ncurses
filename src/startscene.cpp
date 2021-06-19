@@ -1,3 +1,5 @@
+//@author Hanseungjin(20181512)
+
 #include "startscene.h"
 #include "gamescene.h"
 #include "function.h"
@@ -26,26 +28,24 @@ void startscene::Update(float eTime)
         answer = IsUserReady();
         if (answer == 'n')
             exit(0);
-        temp = (int)answer - 49;
+        if (answer == 'y')
+            break;
     } while (temp < 0 || temp > 2);
 
-    stage->setNowStage((int)answer - 49);
+    stage->nowStage = 0;
 
     ChangeScene(new GameScene());
 }
 
-void startscene::Render()
-{
-}
+
 
 void startscene::ClearCentre(float x, float y)
 {
-    clear(); // clear the screen if the game is played for the 2nd time
+    clear();
     initscr();
     noecho();
-    getmaxyx(stdscr, maxheight, maxwidth);
 
-    //myFunction�� �ִ� ����
+    getmaxyx(stdscr, maxheight, maxwidth);
     getmaxyx(stdscr, currentHeight, currentWidth);
 
     move((maxheight / y), (maxwidth / x));
@@ -100,7 +100,6 @@ void startscene::Load()
     }
 }
 
-// print start menu
 int startscene::IsUserReady()
 {
     ClearCentre(3, 2.5);
@@ -108,7 +107,7 @@ int startscene::IsUserReady()
     Load();
 
     move(25, 0);
-    printw("Welcome to the Snake Game. Press 1 or 2 or 3 to start or 'n'");
+    printw("Welcome to the Snake Game. Press 'y' to start or 'n'");
     move(30, 14);
     return UserInput();
 }

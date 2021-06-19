@@ -1,10 +1,12 @@
+//@author Hanseungjin(20181512)
+
 #include"make_map.h"
 #include"stage.h"
 #include<string.h>
 extern Stage* stage;
-//----------------------------------------------------------------------
 
-MapManager::MapManager() // load txt file. named stageName. ex) 1.txt 2.txt 3.txt 4.txt
+
+MapManager::MapManager()
 {
 }
 
@@ -30,7 +32,25 @@ void MapManager::Load()
         height++;
     }
 
+
+    if(stage->getNowStage() == 3){
+      for (int i = 6; i < WIDTH-6; i++)
+      {
+          data[9][i] = '1';
+      }
+      for (int i = 6; i < WIDTH-6; i++)
+      {
+          data[18][i] = '1';
+      }
+      for (int i = 6; i < WIDTH-6; i++)
+      {
+          data[27][i] = '1';
+      }
+    }
+
 }
+
+
 
 void* MapManager::GetData()
 {
@@ -43,13 +63,5 @@ void MapManager::PatchData(int y, int x, char patchData)
 }
 
 MapManager::~MapManager()
-{
-}
-
-void MapManager::Render()
-{
-}
-
-void MapManager::Update(float eTime)
 {
 }

@@ -1,3 +1,4 @@
+//@author Hanseungjin(20181512)
 #include "IScene.h"
 #include "stage.h"
 #include "function.h"
@@ -15,12 +16,11 @@ public:
 	~startscene();
 
 	void Update(float eTime);
-	void Render();
+	void Render(){};
 
 	void Load();
 	void ClearCentre(float x, float y);
 	int UserInput();
 	int IsUserReady();
 
-	// clear the screen and centre the cursor
 };

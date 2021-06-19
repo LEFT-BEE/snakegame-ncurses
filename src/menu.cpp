@@ -1,3 +1,5 @@
+//@author Leeminji(20173416)
+
 #include <ncurses.h>
 #include <vector>
 #include <cstdlib>
@@ -12,18 +14,34 @@ using namespace std;
 extern Player *me;
 extern Stage *stage;
 
+
+
+char MENU::Complete(int present, int goal)
+{
+    if (present >= goal)
+        return 'V';
+    else
+        return ' ';
+}
+
+
 MENU::MENU()
 {
+    clear = false;
     getmaxyx(stdscr, maxheight, maxwidth);
-    isclear = false;
 }
 MENU::~MENU()
 {
 }
 void MENU::Update(float eTime)
 {
-}
+      int *nowMission = stage->getNowMission();
 
+      if (Complete(me->lengthScore, nowMission[0]) == 'V')
+        clear = true;
+      else
+        clear = false;
+}
 
 void MENU::Render()
 {
@@ -51,7 +69,7 @@ void MENU::DrawScore()
     move(10 , maxwidth / 5 * 4 +6);
     printw(totalScore_str.c_str());
 
-    
+
     int growScore = me->growScore;
     string growScore_str =  to_string(growScore);
     move(12, maxwidth / 5 * 4 +1);
@@ -59,7 +77,7 @@ void MENU::DrawScore()
     move(12 , maxwidth / 5 * 4 +6);
     printw(growScore_str.c_str());
 
-    
+
     int poisonScore = me->poisonScore;
     string poisonScore_str =  to_string(poisonScore);
     move(14, maxwidth / 5 * 4 +1);
@@ -67,25 +85,15 @@ void MENU::DrawScore()
     move(14 , maxwidth / 5 * 4 +6);
     printw(poisonScore_str.c_str());
 
-    
+
     int gateScore = me->gateScore;
     string gateScore_str =  to_string(gateScore);
     move(16, maxwidth / 5 * 4 +1);
     printw("G : ");
     move(16 , maxwidth / 5 * 4 +6);
     printw(gateScore_str.c_str());
-    
+
 }
-
-
-char MENU::Complete(int present, int goal)
-{
-    if (present >= goal)
-        return 'V';
-    else
-        return ' ';
-}
-
 void MENU::DrawMission()
 {
     int *nowMission = stage->getNowMission();
@@ -111,7 +119,11 @@ void MENU::DrawMission()
     move(28, maxwidth / 5 * 4 -2);
     printw("Gate : %d/%d (%c)", me->gateScore, nowMission[3], Complete(me->gateScore, nowMission[3]));
 
-    if (Complete(me->lengthScore, nowMission[0]) == 'V' && Complete(me->lengthScore, nowMission[1]) == 'V' &&
-        Complete(me->lengthScore, nowMission[2]) == 'V' && Complete(me->lengthScore, nowMission[3]) == 'V')
-        isclear = true;
+    // if (Complete(me->lengthScore, nowMission[0]) == 'V' && Complete(me->growScore, nowMission[1]) == 'V'){
+    //     if(Complete(me->poisonScore, nowMission[2]) == 'V' && Complete(me->gateScore, nowMission[3]) == 'V')
+    //       {
+    //         clear = true;
+    //       }
+    //   }
+
 }

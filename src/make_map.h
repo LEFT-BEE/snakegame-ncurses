@@ -1,3 +1,5 @@
+//@author Hanseungjin(20181512)
+
 #include<iostream>
 #include<ncurses.h>
 #include <fstream>
@@ -7,12 +9,12 @@
 #include <ctime>
 #include "function.h"
 #include "IScene.h"
-#include "IObject.h"
+
 
 #define WIDTH 62
 #define HEIGHT 32
 
-class MapManager : public IObject
+class MapManager
 {
 public:
 	char data[HEIGHT][WIDTH];
@@ -21,12 +23,7 @@ public:
 
 	MapManager();
 	~MapManager();
-
-	void Render();
-	void Update(float eTime);
-
 	void* GetData();
-
 	void PatchData(int y, int x, char patchData);
 	void Load();
 };

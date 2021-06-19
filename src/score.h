@@ -1,5 +1,6 @@
-#pragma once
+//@author Leeminji(20173416)
 
+#pragma once
 class Player
 {
 public:
