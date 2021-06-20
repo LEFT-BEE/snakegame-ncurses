@@ -128,9 +128,9 @@ void itemManager::MakeGate()
     Gate1.y=rand()%HEIGHT;
     if(Gate1.y>(HEIGHT/2)) Gate1.y=HEIGHT-2;
     else Gate1.y=1;
-    Gate1.x=rand()%(WIDTH-3)+2;
+    Gate1.x=rand()%(WIDTH-4)+2;
 
-    Gate2.y=rand()%(HEIGHT-3)+2;
+    Gate2.y=rand()%(HEIGHT-4)+2;
     Gate2.x=rand()%WIDTH;
     if(Gate2.x>(WIDTH/2)) Gate2.x=WIDTH-2;
     else Gate2.x=1;
