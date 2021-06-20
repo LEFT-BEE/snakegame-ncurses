@@ -37,7 +37,7 @@ void MENU::Update(float eTime)
 {
       int *nowMission = stage->getNowMission();
 
-      if ((Complete(me->lengthScore, nowMission[0]) == 'V' && Complete(me->growScore, nowMission[1]) == 'V') &&
+      if ((Complete(me->lengthScore, nowMission[0]) == 'V' && Complete(me->giftScore, nowMission[1]) == 'V') &&
     (Complete(me->poisonScore, nowMission[2]) == 'V' && Complete(me->gateScore, nowMission[3]) == 'V'))
         clear = true;
       else
