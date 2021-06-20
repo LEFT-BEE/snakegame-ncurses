@@ -27,7 +27,7 @@ class snakeclass{
 
 
 public:
-    bool grow;
+    bool gift;
     bool poison;
     bool biggift;
 

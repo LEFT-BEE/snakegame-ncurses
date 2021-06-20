@@ -5,7 +5,7 @@ class Player
 {
 public:
     int lengthScore = 0;
-    int growScore = 0;
+    int giftScore = 0;
     int poisonScore = 0;
     int gateScore = 0;
     int totalScore = 0;
@@ -13,7 +13,7 @@ public:
     Player()
     {
         lengthScore = 0;
-        growScore = 0;
+        giftScore = 0;
         poisonScore = 0;
         gateScore = 0;
         totalScore = 0;
@@ -23,9 +23,9 @@ public:
     {
         lengthScore = value;
     }
-    void SetGrowScore(int value)
+    void SetGiftScore(int value)
     {
-        growScore = value;
+        giftScore = value;
     }
     void SetPoisonScore(int value)
     {
@@ -37,6 +37,6 @@ public:
     }
     void SetTotalScore(int value)
     {
-        totalScore = growScore * 10 - poisonScore * 10 + gateScore * 1 + value * 10;
+        totalScore = giftScore * 10 - poisonScore * 10 + gateScore * 5 ;
     }
 };

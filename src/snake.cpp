@@ -34,7 +34,7 @@ snakeclass::snakeclass()
    for(int i=0; i<3; i++){
      snake.push_back(snakepart(20+i, 20));
    }
-   grow = false;
+   gift = false;
    poison = false;
    biggift = false;
 
@@ -110,19 +110,19 @@ void snakeclass::movesnake(float eTime)
     }
     if(mapManager->data[snake[0].y][snake[0].x] == '6'){
       itemmanager->deleteitem(snake[0].y , snake[0].x);
-      me->SetGrowScore(me->growScore + 1);
+      me->SetGiftScore(me->giftScore + 1);
       me->SetLengthScore(me->lengthScore + 1);
-      grow = true;
+      gift = true;
     }
     else{
-      grow = false;
+      gift = false;
     }
     if(mapManager->data[snake[0].y][snake[0].x] == '7'){
       itemmanager->deleteitem(snake[0].y , snake[0].x);
-      me->SetGrowScore(me->growScore + 1);
+      me->SetGiftScore(me->giftScore + 1);
       me->SetLengthScore(me->lengthScore + 1);
       biggift = true;
-      grow = true;
+      gift = true;
     }
     else{
       biggift = false;
@@ -167,7 +167,7 @@ void snakeclass::movesnake(float eTime)
 }
 
 void snakeclass::PushData(){
-  if(!grow)//add len
+  if(!gift)//add len
   {
       mapManager->PatchData(snake[snake.size()-1].y , snake[snake.size()-1].x , '0');
       snake.pop_back();

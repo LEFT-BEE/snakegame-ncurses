@@ -45,7 +45,6 @@ void MENU::Update(float eTime)
 
 void MENU::Render()
 {
-    //[TO-DO] 여기에서 mvaddch를 이용해서 출력해주기
     DrawScore();
     DrawMission();
 }
@@ -70,12 +69,12 @@ void MENU::DrawScore()
     printw(totalScore_str.c_str());
 
 
-    int growScore = me->growScore;
-    string growScore_str =  to_string(growScore);
+    int giftScore = me->giftScore;
+    string giftScore_str =  to_string(giftScore);
     move(12, maxwidth / 5 * 4 +1);
     printw("+ : ");
     move(12 , maxwidth / 5 * 4 +6);
-    printw(growScore_str.c_str());
+    printw(giftScore_str.c_str());
 
 
     int poisonScore = me->poisonScore;
@@ -111,7 +110,7 @@ void MENU::DrawMission()
     printw("Length : %d/%d (%c)", me->lengthScore, nowMission[0], Complete(me->lengthScore, nowMission[0]));
 
     move(24, maxwidth / 5 * 4 -2);
-    printw("Gift : %d/%d (%c)", me->growScore, nowMission[1], Complete(me->growScore, nowMission[1]));
+    printw("Gift : %d/%d (%c)", me->giftScore, nowMission[1], Complete(me->giftScore, nowMission[1]));
 
     move(26, maxwidth / 5 * 4 -4);
     printw("Poison : %d/%d (%c)", me->poisonScore, nowMission[2], Complete(me->poisonScore, nowMission[2]));
